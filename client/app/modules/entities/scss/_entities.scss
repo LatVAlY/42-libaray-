@@ -1,0 +1,108 @@
+@import 'infoboxes';
+@import 'entities_preview';
+@import 'items_lists';
+
+.uri{
+  color: $grey !important;
+  font-size: 0.8em;
+  // text-align: right;
+}
+
+.addEntity{
+  h2{
+    max-width: 36rem;
+  }
+}
+
+.wiki-attributes{
+  margin-top: 0.5em;
+  p.claims{
+    text-align: left;
+  }
+  .fa-link{ color: $grey; }
+  .fa-twitter{ color: $twitter-color; }
+  .fa-facebook{ color: $facebook-color; }
+  .fa-youtube{
+    color: white;
+    background-color: $youtube-color;
+    padding: 0.2em 0;
+    @include radius;
+  }
+  img{
+    text-align: center;
+  }
+}
+
+.ebooks{
+  margin-top: 1em;
+  @include display-flex(row, center, flex-start);
+  .icon{
+    margin-left: 0.6em;
+    margin-right: 0.4em;
+  }
+  a span{
+    // Overriding .workInfobox span:not(.entity-value) selector
+    color: white !important;
+  }
+}
+
+.property-value{
+  color: darken($light-grey, 20%);
+}
+
+.entity-data-box{
+  position: relative;
+  padding: 1em 1em 0.1em 1em;
+  .edit-data-buttons{
+    /*Large screens*/
+    @media screen and (min-width: $small-screen) {
+      @include position(absolute, 0.2em, 0.2em);
+    }
+  }
+}
+
+.edit-data-buttons{
+  @include display-flex(row, center, center);
+  .pencil, .refreshEntityData, .showOnWikidata, .deduplicateEntity, .deduplicateSubEntities, .showEntityCleanup, .showEntityHistory{
+    font-size: 1.4rem;
+    @include text-hover(rgba(white, 0.5), white);
+    .fa{
+      width: 1.6em;
+    }
+  }
+}
+
+#workLayout, .editionLi{
+  .add{
+    @include tiny-button($light-blue);
+    margin: 0 auto;
+  }
+}
+
+.wikisource{
+  .icon{
+    height: 1em;
+    padding-right: 0.35em;
+  }
+}
+
+#entityEdit, .editionLayout{
+  .meta{
+    margin-top: 1em;
+    text-align: center;
+    .uri{
+      margin-top: 1em;
+    }
+  }
+}
+
+.identifier{
+  .identifier-uri{
+    opacity: 0.5;
+  }
+  font-family: sans-serif;
+  font-size: 0.7em;
+  &a{
+    @include underline;
+  }
+}

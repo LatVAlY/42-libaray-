@@ -1,0 +1,110 @@
+@import 'flex';
+@import 'counter';
+
+// the interest of a transition mixin is only to set default values
+// doc: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
+@mixin transition($elements:all, $speed:0.5s, $delay:0s, $mode:ease){
+  transition: $elements $speed $delay $mode;
+}
+
+@mixin border($color, $width:1px, $style:solid){
+  border: $width $style $color;
+}
+
+@mixin position($position, $top:null, $right:null, $bottom:null, $left:null, $z:null){
+  position: $position;
+  @if $top { top: $top; }
+  @if $right { right: $right; }
+  @if $bottom { bottom: $bottom; }
+  @if $left { left: $left; }
+  @if $z { z-index: $z; }
+}
+
+// just bundling both existing syntax
+// cf https://developer.mozilla.org/en-US/docs/Web/CSS/word-wrap
+@mixin text-wrap($setting:break-word){
+  word-wrap: $setting;
+  overflow-wrap: $setting;
+}
+
+@mixin break-line-before(){
+  display:inline;
+  &:before{
+    content:"\a";
+    white-space: pre;
+  }
+}
+
+@mixin flash($color){
+  animation-name: flash-lighten;
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+  @keyframes flash-lighten {
+    0% { opacity: $color; }
+    50% { background-color: lighten($color, 20%); }
+    100% { opacity: $color; }
+  }
+}
+
+@mixin text-align-start(){
+  &:not([dir="rtl"]){
+    text-align: left;
+  }
+  &[dir="rtl"]{
+    text-align: right;
+  }
+}
+
+@mixin glow($glow-color:$glow){
+  border: 0.1em solid rgba(86, 180, 239, 0.6);
+  box-shadow: 0 0.2em 0.5em $glow-color;
+  transition: all 0.5s ease;
+}
+
+@mixin central-column($max-width: 50em){
+  @include display-flex(column, center, center);
+  > section, > div, > form{
+    width: 100%;
+    max-width: $max-width;
+  }
+  /*Large screens*/
+  @media screen and (min-width: $small-screen) {
+    margin: 0em 1em 1em 1em;
+    padding: 0em 1em 1em 1em;
+  }
+}
+
+@mixin box-color($color, $white-text:1){
+  background-color: $color;
+  @if $white-text { @include white-text; }
+}
+
+@mixin white-text{
+  color: white;
+  a.current{
+    color: white;
+  }
+}
+
+// capitalize only the first letter, not every words first letter
+@mixin capitalized(){
+  &:first-letter{
+    text-transform: uppercase;
+  }
+}
+
+@mixin selected-button-color($color, $text-color:white){
+  color: $dark-grey;
+  background-color: #eee;
+  margin: 0.2em;
+  border: 2px solid $light-grey;
+  border-radius: 5px;
+  @include sans-serif;
+  font-weight: normal;
+  &.selected, &.active, &:hover{
+    background-color: white;
+    border-color: $color;
+    i{ color: $color; }
+  }
+}

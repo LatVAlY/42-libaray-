@@ -1,0 +1,21 @@
+@mixin counter-commons(){
+  background-color: $secondary-color;
+  color: $primary-color;
+  font-weight: bold;
+  border-radius: 2px;
+  min-width: 1.2em;
+  text-align: center;
+  padding: 0 0.2em 0.1em 0.2em;
+  &:empty{
+    display: none;
+  }
+}
+
+@mixin hide-counter(){
+  // hidding counter when selected
+  // so that the attention can go to counters
+  // in the selected layout
+  .counter{
+    display: none;
+  }
+}

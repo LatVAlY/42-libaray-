@@ -1,0 +1,42 @@
+.version{
+  background-color: $darker-grey;
+  @include radius;
+  padding: 0.5em;
+  margin: 0.5em 0 0.5em 0;
+  .showUser{
+    color: white;
+    @include underline-on-hover(white);
+  }
+  .label{
+    font-weight: bold;
+    // Allow to set a width
+    display: inline-block;
+    width: 6em;
+  }
+  .special-user{
+    background-color: rgba($grey, 0.5);
+    @include radius;
+    padding: 0.2em;
+    font-size: 0.9em;
+    margin-left: 0.2em;
+  }
+  .deleted-user{
+    color: red;
+    padding-left: 0.2em;
+  }
+  .precise-time{
+    color: #bbb;
+    font-weight: 0.8em;
+    padding-left: 0.5em;
+  }
+  .showUserContributions{
+    color: #bbb;
+    margin-left: 0.5em;
+  }
+  .actions{
+    margin-top: 1em;
+    @include display-flex(row);
+  }
+}
+
+@import 'patch_operations';

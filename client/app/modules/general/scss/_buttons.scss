@@ -1,0 +1,205 @@
+.button{
+  border-style: solid;
+  border-width: 0;
+  line-height: normal;
+  position: relative;
+  text-align: center;
+  appearance: none;
+  @include radius;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color .3s ease-out;
+  padding: 1rem 2rem;
+  margin: 0;
+  @include serif;
+  @include bg-hover($light-blue);
+  color: white;
+  &:focus, &:hover{
+    color: white;
+  }
+  &.grey{
+    @include bg-hover($grey);
+  }
+  &.soft-grey{
+    @include bg-hover($soft-grey);
+  }
+  &.dark-grey{
+    @include bg-hover($dark-grey);
+  }
+  &.sans-serif{
+    @include sans-serif;
+  }
+  &.success{
+    color: white;
+    @include bg-hover($success-color);
+  }
+  &.secondary{
+    @include bg-hover($secondary-color);
+  }
+  &.alert{
+    @include bg-hover($warning-color);
+  }
+  &.disabled{
+    cursor: not-allowed;
+    &:hover{
+      background-color: auto;
+    }
+  }
+}
+
+button{
+  border-style: none;
+  border-width: 0;
+  padding: 0.2em 0.6em;
+  margin: 0;
+  @include sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  appearance: none;
+  display: inline-block;
+  background-color: inherit;
+  cursor: pointer;
+  outline: 0;
+  @include radius;
+}
+
+.tiny-button{
+  @include tiny-button($grey);
+  &.light-blue{
+    @include tiny-button-color($light-blue, null, 5%);
+  }
+  &.success{
+    color: white;
+    @include tiny-button-color($success-color, null, 5%);
+  }
+  &.dangerous, &.alert{
+    @include dangerous-action;
+  }
+  &.soft-grey{
+    @include tiny-button-color($soft-grey);
+  }
+  &.disabled{
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.dangerous-button{
+  @include dangerous-button;
+  @include radius;
+  @include serif;
+  font-weight: bold;
+}
+
+.tiny-success-button{
+  @include tiny-button($success-color);
+}
+
+.tiny-warning-button{
+  @include tiny-button($warning-color);
+}
+
+// text-with-padding buttons
+.validateButton{
+  @include tiny-button($success-color);
+}
+.saveButton{
+  @include tiny-button($success-color);
+}
+.cancelButton{
+  @include tiny-button($grey);
+}
+.cancelButton + .saveButton{
+  margin-left: 0.2em;
+}
+
+// icon buttons
+.editButton{
+  @include shy(0.8);
+  &:hover{
+    span{
+      @include transition(display);
+      display: inherit;
+    }
+  }
+}
+.deleteButton{
+  @include shy;
+  &:hover{
+    color: $soft-red;
+    span{
+      @include transition(display);
+      display: inherit;
+    }
+  }
+}
+.indicator{
+  opacity: 0.8;
+  cursor: default;
+}
+
+// a div with a label and icon buttons floating at right
+// this is a hack to avoid using float:right
+// as it messes with click event listeners
+// closest clue found on this: http://stackoverflow.com/questions/6146568/floatleft-stops-click-event-on-android
+div.icon-buttons-header{
+  width: 100%;
+  height: 1.2em;
+  margin-bottom: 0.5em;
+  label{
+    height: 0;
+    cursor: default;
+  }
+  .right{
+    text-align: right;
+  }
+}
+
+.button-group{
+  @include button-group;
+  @include display-flex(row, center, center);
+}
+
+.button-group-right{
+  @include button-group;
+  @include display-flex(row, center, flex-end);
+}
+
+.shy-label{
+  span{
+    display: none;
+    @include transition(display);
+  }
+  &:hover, &:focus{
+    span{
+      display: inline;
+    }
+  }
+  &.tiny-button{
+    .fa{
+      // centering
+      padding: 0;
+    }
+  }
+}
+
+.soft-grey-button{
+  @include big-button($soft-grey);
+}
+
+.dark-grey-button{
+  @include big-button($dark-grey);
+}
+
+.grey-button{
+  @include big-button($grey);
+}
+
+.light-blue-button{
+  @include big-button($light-blue);
+}
+
+.success-button{
+  @include big-button($success-color);
+}

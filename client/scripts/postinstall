@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+mkdir -p ./public/json ./vendor
+cp -r app/assets/* ./public
+
+npm run update-mentions
+./scripts/build_i18n
+
+# Make git hooks trackable (see https://stackoverflow.com/a/4457124/3324977)
+rm -rf .git/hooks
+ln -s ../.githooks .git/hooks
+
+# Initialize global variables to prevent triggering
+# an 'assignment to undeclared variable JSON_PIWIK' errors
+# as webpack imports this script as an ES module, thus activating strict mode
+# See https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Erreurs/Undeclared_var
+echo 'let JSON_PIWIK, AnalyticsTracker, piwik_log;' > ./vendor/piwik.js
+curl -sk https://piwik.allmende.io/piwik.js >> ./vendor/piwik.js

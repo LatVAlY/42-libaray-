@@ -1,0 +1,47 @@
+.patch-operations{
+  a{
+    color: inherit;
+  }
+  .patch{
+    @include display-flex(row, center, flex-start);
+    @include radius;
+    background-color: white;
+    margin: 0.2em 0;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding: 0.5em;
+    color: $dark-grey;
+    > div{
+      display: inline-block;
+    }
+    .op{
+      margin-right: 1em;
+      width: 3em;
+    }
+    .path{
+      width: 10em;
+      color: $grey;
+      margin-right: 1em;
+      white-space: nowrap;
+    }
+    .value{
+      overflow: hidden;
+    }
+  }
+  .patch-add{
+    .op{
+     color: green;
+    }
+  }
+  .patch-remove{
+    .op{
+      color: red;
+    }
+  }
+  /*Small screens*/
+  @media screen and (max-width: $small-screen) {
+    .patch{
+      flex-wrap: wrap;
+    }
+  }
+}

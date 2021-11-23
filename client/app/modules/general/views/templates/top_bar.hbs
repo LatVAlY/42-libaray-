@@ -1,0 +1,19 @@
+<h1 class="respect-case"><a id="home" href="/">{{#if smallScreen}}inv{{else}}42Wolfsburg{{/if}}</a></h1>
+
+<div id="searchGroup" class="inputGroup">
+  <div class="inputBox">
+    <input aria-label="search" id="searchField" name="search" placeholder="{{I18n 'search'}}" autocomplete="off" autocorrect="off" autocapitalize="off" type="search">
+    <a class="closeSearch hidden">{{icon 'close'}}</a>
+    <div id="liveSearch"></div>
+    <div id="overlay" class="hidden"></div>
+  </div>
+</div>
+
+{{> 'general:top_bar_language_picker' this}}
+
+<div id="topBarButtons"></div>
+
+{{#unless isLoggedIn}}
+  <a class="connectionButton signupRequest one" href="/signup">{{I18n 'sign up'}}</a>
+  <a class="connectionButton loginRequest two"  href="/login">{{I18n 'login'}}</a>
+{{/unless}}

@@ -1,0 +1,167 @@
+$input-border-color: #c4c4c4;
+$input-font-color: black;
+$input-height: 2.3rem;
+
+input, textarea, [tabindex]:focus{
+  outline: none;
+}
+
+input, textarea{
+  @include radius;
+  background-color: white;
+  font-family: inherit;
+  color: $input-font-color;
+  display: block;
+  margin: 0 0 1rem 0;
+  padding: 0.5rem;
+  height: $input-height;
+  width: 100%;
+  transition: box-shadow 0.45s, border-color 0.45s ease-in-out;
+  &:disabled{
+    background-color: #ddd;
+    cursor: default;
+  }
+  &.has-alertbox{
+    margin-bottom: 0;
+  }
+}
+
+textarea{
+  line-height: 1.6rem;
+}
+
+input[type="text"], input[type="search"], input[type="password"], input[type="email"], textarea{
+  border: 1px solid $input-border-color;
+  &:focus{
+    border-color: darken($input-border-color, 10%);
+  }
+}
+
+input[type="checkbox"]{
+  margin: 0;
+  width: auto;
+}
+
+input[type="checkbox"] + label{
+  padding: 0.2em 0.8em;
+}
+
+input[type="file"]{
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+input[type="password"]{
+  // forcing standard password dots
+  font-family: sans-serif !important;
+}
+
+input:disabled{
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+textarea{
+  height: auto;
+  min-height: 50px;
+  // don't set a min-width as textarea are sometimes in a flex row
+  // with other elements (ex: transactions new_message)
+  // min-width: 100%;
+  max-width: 100%;
+  resize: none;
+  border: solid 1px #ccc;
+  &:focus{
+    box-shadow: 0 0 2px $glow;
+  }
+}
+
+.inputGroup{
+  width: 100%;
+  @include display-flex(row, left, flex-start);
+  margin-bottom: 0.5em;
+  a.button.postfix{
+    height: 2.2rem;
+    white-space: nowrap;
+  }
+
+  /*Small screens*/
+  @media screen and (max-width: $very-small-screen) {
+    flex-direction: column;
+    .button{
+      width: 100%;
+    }
+  }
+
+  /*Large screens*/
+  @media screen and (min-width: $very-small-screen) {
+    .inputBox input{
+      @include radius-left;
+      @include radius-right(0);
+    }
+    a.button.postfix{
+      @include radius-right;
+      @include radius-left(0);
+      width: auto;
+      padding: 0 1em;
+    }
+  }
+}
+
+.inputBox{
+  flex: 1 1 auto;
+  min-width: 60%;
+  input{
+    height: 2.2rem;
+    padding: 0 0.5em;
+    margin-bottom: 0;
+  }
+  /*Small screens*/
+  @media screen and (max-width: $very-small-screen) {
+    width: 100%;
+    input{
+      margin: 0 !important;
+      @include radius-top;
+    }
+    a.button.postfix{
+      align-self: stretch;
+      @include radius-bottom;
+      @include radius-top(0);
+      padding: 5em;
+    }
+    .alert-box{
+      margin: 0;
+    }
+  }
+}
+
+/* Attach elements to the beginning or end of an input */
+.postfix{
+  display: block;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  font-size: 0.9rem;
+  height: $input-height;
+  line-height: $input-height;
+  /* Adjust padding, alignment and radius if pre/post element is a button */
+  &.button{
+    padding: 0;
+    text-align: center;
+    line-height: 2.1rem;
+    border: none;
+  }
+  /* Separate postfix styles when on span or label so buttons keep their own */
+  &span, &label{
+    background: #f2f2f2;
+    border-left: none;
+    color: $input-font-color;
+    border-color: $input-border-color;
+  }
+}

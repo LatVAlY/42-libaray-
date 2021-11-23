@@ -1,0 +1,50 @@
+$shadow-color: rgba(34, 25, 25, 0.4);
+
+@mixin shadow-box($color:$shadow-color, $offsetX:0, $offsetY:1px, $blur:2px, $spread:0,  $opacity: 0.5){
+  box-shadow: $offsetX $offsetY $blur $spread rgba($color, $opacity);
+}
+
+@mixin glow-on-focus(){
+  &.focus{
+    @include glow;
+  }
+}
+
+@mixin inner-shadow($x:1px, $y:1px, $blur:8px, $spread:3px, $color:rgba(black, 0.3)){
+  // offset-x | offset-y | blur-radius | spread-radius | color
+  box-shadow: (-$x) $y $blur $spread $color inset,
+              $x (-$y) $blur $spread $color inset;
+}
+
+@mixin shy-border($opacity:0.2){
+  border: 1px solid rgba($grey, $opacity);
+}
+
+@mixin shy-border-top-less($opacity:0.2){
+  border: 1px solid rgba($grey, $opacity);
+  border-top: 0;
+}
+
+@mixin shy-border-bottom-less($opacity:0.2){
+  border: 1px solid rgba($grey, $opacity);
+  border-bottom: 0;
+}
+
+@mixin shy-border-sides($opacity:0.2){
+  border: 1px solid rgba($grey, $opacity);
+  border-top: 0;
+  border-bottom: 0;
+}
+
+@mixin shy-border-vertical-group($opacity:0.2){
+  > div{
+    @include shy-border-sides($opacity);
+    &:first-child{ @include shy-border-bottom-less($opacity); }
+    &:last-child{ @include shy-border-top-less($opacity); }
+  }
+}
+
+@mixin shy-text-border($color:rgba($grey, 0.2)){
+  // see http://stackoverflow.com/a/13427256/3324977
+  text-shadow: 2px 0 0 $color, -2px 0 0 $color, 0 2px 0 $color, 0 -2px 0 $color, 1px 1px $color, -1px -1px 0 $color, 1px -1px 0 $color, -1px 1px 0 $color;
+}

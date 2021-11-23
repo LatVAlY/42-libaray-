@@ -1,0 +1,15 @@
+<h3 class="layout-type-label">{{I18n 'author'}}</h3>
+
+<div class="innerAuthorLi">
+  <div class='authorInfobox'></div>
+  <div class="subentities">
+    <div class='series'></div>
+    <div class='works'><span class="loading"></span></div>
+    <div class='articles'></div>
+  </div>
+</div>
+
+{{#if standalone}}
+  {{> 'entities:merge_homonyms_layout_section' this}}
+  {{> 'welcome:embedded_welcome'}}
+{{/if}}

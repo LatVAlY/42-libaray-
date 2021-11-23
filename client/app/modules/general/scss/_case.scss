@@ -1,0 +1,16 @@
+.button, label, .capitalized{
+  &:not(.respect-case):first-letter{
+    text-transform: uppercase;
+  }
+}
+.subheader:first-letter{
+  text-transform: uppercase;
+}
+
+.capitalizedAll{
+  text-transform: capitalize;
+}
+
+.uppercased{
+  text-transform: uppercase;
+}

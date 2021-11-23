@@ -1,0 +1,40 @@
+.timeline{
+  margin-bottom: 1em;
+  @import './action';
+  @import './message';
+  /*Small screens*/
+  @media screen and (max-width: $very-small-screen) {
+    padding-left: 0.4em;
+    padding-right: 0.2em;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  /*Large screens*/
+  @media screen and (min-width: $very-small-screen) {
+    padding-left: 1.2em;
+    padding-right: 1em;
+  }
+}
+
+$timeline-bar-color: #bbb;
+
+// timeline vertical bar
+.timeline{
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    position: absolute;
+    margin-left: 1.2em;
+    width: 1px;
+    height: 100%;
+    background-color: $timeline-bar-color;
+    z-index: 1;
+  }
+}
+.event-icon{
+  background-color: white;
+  z-index: 2;
+  padding-top: 0.3em;
+  padding-bottom: 0.4em;
+}

@@ -1,0 +1,118 @@
+html, body{
+  font-size: 100%;
+}
+html{
+  height: 100%;
+  // Prevent jumping scrollbar, the simple/classic way
+  // Cf https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/
+  overflow-y: scroll;
+}
+
+// Foundation had this, and now everything relies on it:
+// Do not remove
+*, *:before, *:after{
+  box-sizing: border-box;
+}
+
+body{
+  height: auto;
+  background-color: $body-bg;
+  color: #222;
+  padding: 0;
+  margin: 0;
+  font-family: "Alegreya Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.5;
+  position: relative;
+  cursor: auto;
+  ul, ul li{
+    list-style-type: none;
+    list-style-position: outside;
+    padding: 0;
+    margin: 0;
+  }
+  li{
+    margin: 0;
+  }
+  p{
+    margin: 0;
+    padding: 0;
+  }
+  a, button{
+    outline: 0;
+  }
+}
+
+// OPACITY
+.hidden{
+  // DONT !important it as it seems it can't be shown then
+  display: none;
+}
+.force-hidden{
+  // remove the class to make visible
+  display: none !important;
+}
+
+.invisible{
+  visibility: hidden;
+}
+
+.glowing, .focus{
+  @include glow;
+}
+
+.big{
+  font-size: 5rem;
+  padding: 1rem;
+}
+.medium{
+  font-size: 2rem;
+  padding: 0.2rem;
+}
+
+.fa{
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  // Force monospace
+  width: 1.4em;
+  text-align: center;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.margin-top{
+  margin-top: 1rem;
+}
+
+.user-content{
+  @include text-wrap;
+  max-width: 100%;
+}
+
+.layout-type-label{
+  // Display only on .standalone layouts
+  display: none;
+  text-align: center;
+  margin-bottom: 0.5em;
+  font-weight: normal;
+  color: #8c8d90;
+}
+.standalone > .layout-type-label{
+  display: inherit;
+}
+
+#nojs-warning{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  background-color: $yellow;
+  padding: 0 0.5em;
+  a{
+    text-decoration: underline;
+  }
+}

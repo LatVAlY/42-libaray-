@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+# Exit on error (cf http://jvns.ca/blog/2017/03/26/bash-quirks/)
+set -e
+
+echo -e '\e[0;30mupdating i18n\e[0m'
+./scripts/build_i18n
+
+echo -e '\e[0;30mupdate mentions\e[0m'
+npm run update-mentions
+
+echo -e '\e[0;30mwebpack build\e[0m'
+rm -f ./public/dist/*
+webpack --config ./bundle/webpack.config.prod.cjs --progress
+
+utc_time=$(date -Ins | sed 's/,.*//')
+last_commit_hash=$(git rev-parse --short HEAD)
+bundle_name="${utc_time}_commit_${last_commit_hash}"
+mkdir -p ./scripts/assets/bundles_archives ./scripts/assets/bundles_stats
+archive_path="./scripts/assets/bundles_archives/${bundle_name}"
+
+echo -e "\e[0;30mcreate index.html symlink\e[0m"
+# Allows to not have to change inventaire (local) and nginx (prod) servers expectactions
+ln -sf ./dist/index.html public
+
+# Keeping a copy of generated builds can be useful for debugging (i.e. resolving source maps)
+# but you might want to delete old archives after a while, which can be done by running something like
+#   find ./scripts/assets/bundles_archives -type d -mtime +90 -delete
+echo -e "\e[0;30mcreate bundle archive in $archive_path\e[0m"
+cp -r ./public/dist "$archive_path"
+# Copy stats in a separate directory, so that cleaning up the bundles_archives directory doesn't delete stats
+# Those files can then be passed to webpack-bundle-analyzer cli to generate the html report, or to other bundle analyzers,
+# such as https://statoscope.tech
+# for more, see https://survivejs.com/webpack/optimizing/build-analysis/#dependency-analysis
+cp ./public/dist/bundle_stats.json "./scripts/assets/bundles_stats/${bundle_name}.json"
+cp ./public/dist/bundle_report.html "./scripts/assets/bundles_stats/${bundle_name}.html"
+
+# Cleanup before gzipping
+rm -f ./public/*.gz
+rm -f ./public/*/*.gz
+
+echo -e '\e[0;30mgzip dist files\e[0m'
+gzip -9kf ./public/dist/*
+
+# Do not re-generate sitemaps if a directory already exists
+# To regenerate sitemaps, delete the existing directory
+if [ ! -d "./public/sitemaps" ] ; then
+  echo -e '\e[0;30mgenerate sitemaps\e[0m'
+  mkdir ./public/sitemaps
+  npm run generate-sitemaps
+fi
+
+echo -e '\e[0;30mgzip assets\e[0m'
+gzip -9kf public/fonts/*
+gzip -9kf public/i18n/*
+gzip -9kf public/json/*
+gzip -9kf public/sitemaps/*
+gzip -9kf public/*.xml
+gzip -9kf public/*.jsonld
+gzip -9kf public/*.txt
+
+echo -e '\e[0;32mbuild: done\e[0m'
+echo "inspect: file://$PWD/scripts/assets/bundles_stats/${bundle_name}.html"
+echo "archive: $archive_path"

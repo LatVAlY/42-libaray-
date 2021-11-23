@@ -1,0 +1,47 @@
+@import 'fork-awesome/css/fork-awesome.css';
+
+@font-face {
+ font-family: 'Alegreya';
+ font-weight: normal;
+ src: url(assets/fonts/Alegreya-Regular.woff);
+}
+
+@font-face {
+ font-family: 'Alegreya';
+ font-weight: bold;
+ src: url(assets/fonts/Alegreya-Bold.woff);
+}
+
+/* for cyrillic text */
+@font-face {
+ font-family: 'Gregor';
+ font-weight: normal;
+ src: url(assets/fonts/Gregor-Regular.otf);
+}
+
+@font-face {
+ font-family: 'Alegreya Sans';
+ font-weight: normal;
+ src: url(assets/fonts/AlegreyaSans-Regular.woff);
+}
+
+@font-face {
+ font-family: 'Alegreya Sans';
+ font-weight: bold;
+ src: url(assets/fonts/AlegreyaSans-Bold.woff);
+}
+
+.serif{
+  @include serif;
+}
+.sans-serif{
+  @include sans-serif;
+}
+
+.username{
+  @include serif;
+  font-weight: bold;
+}
+
+$serif: 'Alegreya';
+$sans-serif: 'Alegreya Sans';

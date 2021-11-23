@@ -1,0 +1,37 @@
+{{#if validEmail}}
+  <div class="valid">
+    <p>
+      {{icon 'check'}}
+      {{i18n 'email_confirmation_success'}}
+    </p>
+    {{#if loggedIn}}
+      <a href="/inventory" class="button dark-grey radius showHome">
+        {{i18n 'back to your inventory'}}
+      </a>
+    {{else}}
+      <a href="/login" class="button dark-grey radius showLogin">
+        {{i18n 'login to your inventory'}}
+      </a>
+    {{/if}}
+  </div>
+{{else}}
+  <div class="invalid">
+    <p>
+      {{icon 'bolt'}}
+      {{i18n 'email_confirmation_error'}}
+    </p>
+    {{#if loggedIn}}
+      <a id="emailConfirmationRequest" class="button dark-grey radius">
+        {{i18n 'email_confirmation_error_button'}}
+      </a>
+    {{else}}
+      <p class="offline">
+        {{i18n 'email_confirmation_offline_error'}}
+      </p>
+      <a href="/login?redirect=settings/profile" class="button dark-grey radius showLoginRedirectSettings">
+        {{i18n 'login'}}
+      </a>
+    {{/if}}
+  </div>
+  <div class="loading check"></div>
+{{/if}}

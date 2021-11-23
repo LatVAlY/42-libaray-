@@ -1,0 +1,171 @@
+/* Typography resets */
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+p,
+blockquote,
+th,
+td{
+  margin: 0;
+  padding: 0;
+}
+
+/* Default Link Styles */
+a{
+  color: #008CBA;
+  text-decoration: none;
+  line-height: inherit;
+  &:hover, &:focus{
+    color: #0078a0;
+  }
+  img{
+    border: none;
+  }
+}
+
+/* Default paragraph styles */
+p{
+  font-family: inherit;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  text-rendering: optimizeLegibility;
+}
+
+/* Default header styles */
+h1, h2, h3, h4, h5, h6, .pseudo-element-header:before{
+  font-family: "Alegreya", serif;
+  font-weight: normal;
+  font-style: normal;
+  color: #222222;
+  text-rendering: optimizeLegibility;
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  word-break: break-word;
+  small{
+    font-size: 60%;
+    color: #6f6f6f;
+    line-height: 0;
+  }
+}
+
+h1{
+  font-size: 2.125rem;
+}
+
+h2{
+  font-size: 1.6875rem;
+}
+
+h3{
+  font-size: 1.375rem;
+}
+
+h4{
+  font-size: 1.125rem;
+}
+
+h5{
+  font-size: 1.125rem;
+}
+
+h6{
+  font-size: 1rem;
+}
+
+.subheader{
+  line-height: 1.4;
+  color: #6f6f6f;
+  font-weight: normal;
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+hr{
+  border: solid #DDDDDD;
+  border-width: 1px 0 0;
+  clear: both;
+  margin: 1.25rem 0 1.1875rem;
+  height: 0;
+}
+
+/* Helpful Typography Defaults */
+em, i{
+  font-style: italic;
+  line-height: inherit;
+}
+
+strong, b{
+  font-weight: bold;
+  line-height: inherit;
+}
+
+small{
+  font-size: 60%;
+  line-height: inherit;
+}
+
+/* Lists */
+ul, ol, dl{
+  font-size: 1rem;
+  line-height: 1.6;
+  list-style-position: outside;
+  font-family: inherit;
+}
+
+ul{
+  &.no-bullet{
+    margin-left: 0;
+    li ul, li ol{
+      margin-bottom: 0;
+      list-style: none;
+    }
+  }
+}
+
+/* Unordered Lists */
+ul li ul, ul li ol{
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width: 40.063em){
+  h1, h2, h3, h4, h5, h6{
+    line-height: 1.4;
+  }
+  h1{
+    font-size: 2.7rem;
+  }
+  h2{
+    font-size: 1.8rem;
+  }
+  h3{
+    font-size: 1.6rem;
+  }
+  h4{
+    font-size: 1.4rem;
+  }
+  h5{
+    font-size: 1.1rem;
+  }
+  h6{
+    font-size: 1rem;
+  }
+}
+
+.text-center{
+  text-align: center !important;
+}

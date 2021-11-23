@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /search
+Disallow: /entity/new
+Disallow: /entity/*/add$
+Disallow: /network/*?*
+Disallow: /tasks
+
+Sitemap: https://inventaire.io/public/sitemaps/sitemapindex.xml

@@ -1,0 +1,33 @@
+@import 'modules/general/scss/utils';
+@import 'modules/general/scss/toggler';
+@import 'group_settings';
+
+#createGroupLayout{
+  @include display-flex(column, stretch, center);
+  h3{
+    text-align: center;
+  }
+  label{
+    color: black;
+    text-align: left;
+    font-size: 1em;
+  }
+  #createGroup{
+    margin: 1em auto;
+  }
+  .showGroup{
+    @include tiny-button($success-color);
+    font-weight: normal;
+    @include sans-serif;
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+  .warning{
+    .fa{
+      margin: 0 0.5em;
+    }
+    &.opened, &.searchable{
+      background-color: #f0f0f0;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+a{
+  @include text-hover($primary-color, darken($primary-color, 5%));
+  word-break: break-word;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.link{
+  @include link-underline-on-hover($dark-grey, $link-hover-grey);
+}
+.link-white{
+  @include link-underline-on-hover(white, white);
+}
+
+.content-link{
+  @include link-underline-on-hover($grey, lighten($grey, 5%));
+}

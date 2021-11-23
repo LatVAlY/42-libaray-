@@ -1,0 +1,105 @@
+@import 'modules/general/scss/toggler';
+@import 'modules/general/scss/change_picture';
+
+#groupSettings{
+  input, textarea{
+    // sections already have padding/margin
+    margin-bottom: 0.2em;
+  }
+  label{
+    text-align: left;
+    font-size: 1em;
+    color: black;
+  }
+  .inner{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+  .inputGroup .button{
+    max-width: 10em;
+    font-weight: bold;
+  }
+  #changePicture{
+    @include bg-hover(#555, 10%);
+  }
+}
+#groupControls{
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.leave, .destroy{
+  @include dangerous-button;
+  @include radius;
+  font-weight: bold;
+}
+.leave{
+  &.disabled{
+    cursor: not-allowed;
+    &:hover{
+      // disabling dangerous-button hover behaviour
+      background-color: $grey;
+    }
+  }
+}
+.reason{
+  // hacky compensation of the weird positioning
+  // that would overlap the button if there wasn't that padding
+  padding-top: 1em;
+}
+
+.searchability, .openness{
+  .warning{
+    background-color: $grey;
+    color: white;
+    @include radius;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    &.opened, &.searchable{
+      background-color: white;
+      color: $dark-grey;
+    }
+  }
+}
+.position-status{
+  background-color: #ddd;
+  @include radius;
+  margin: auto;
+  .fa{
+    font-size: 0.8em;
+    padding-left: 0.6em;
+    opacity: 0.6;
+  }
+  .coordinates{
+    opacity: 0.6;
+  }
+}
+.group-position-setting{
+  @include display-flex(row, center, space-between);
+  div{
+    span, label{
+      display: inline;
+    }
+  }
+  margin-top: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  .tip{
+    margin-right: auto;
+    font-size: 0.8em;
+    padding-top: 0.4em;
+  }
+  .button{
+    height: 2em;
+    width: 3em;
+    @include display-flex(row, center, center);
+  }
+  .fa{
+    padding-left: 0.3em;
+    font-size: 1.2em;
+  }
+  .tip{
+    color: grey;
+  }
+}

@@ -1,0 +1,48 @@
+.language-picker{
+  padding-left: 0.5em;
+  .dropdown{
+    min-width: 18em;
+  }
+  .options{
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 60vh;
+  }
+  li.option{
+    display: flex;
+    a{
+      flex: 1 0 auto;
+      padding: 0.4em 0;
+      position: relative;
+      z-index: 1;
+      background-color: $grey;
+      &, span{
+        color: white !important;
+      }
+    }
+    .completion{
+      @include position(absolute, 0, null, 0, null, -1);
+      background-color: $light-blue;
+    }
+    .lang{
+      font-weight: bold;
+      padding: 0 0.5em;
+    }
+    .completion-text{
+      margin-left: auto;
+      font-weight: normal;
+      opacity: 0.8;
+    }
+    &:hover{
+      .completion{
+        opacity: 0.25;
+      }
+      a{
+        background-color: $dark-grey;
+      }
+    }
+    &:not(:last-child) .completion{
+      border-bottom-right-radius: $global-radius;
+    }
+  }
+}
