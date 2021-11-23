@@ -1,0 +1,28 @@
+{{>paragraph_top}}
+  {{#if user}}
+    <h4>{{user.username}}</h4>
+    {{user.email}} - {{user._id}}<br>
+    confirmed email: {{user.validEmail}}<br>
+    language: {{user.language}}<br>
+  {{else}}
+    <h4>{{unknownUser}}</h4>
+  {{/if}}
+  <hr>
+  <p>{{subject}}</p>
+  <hr>
+  {{!-- preserver line-breaks --}}
+  <p style="white-space: pre-line;">{{message}}</p>
+  {{#if uris}}
+    <ul>
+      {{#each uris}}
+        <li>
+          <a href="{{../host}}/entity/{{this}}">{{this}}</a>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+  <hr>
+  {{#each context}}
+    {{#if this}}<pre style="font-size: 14px;">{{@key}}: {{stringify this}}</pre><br>{{/if}}
+  {{/each}}
+{{>paragraph_bottom}}

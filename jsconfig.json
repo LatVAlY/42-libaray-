@@ -1,0 +1,59 @@
+{
+  "__generatedBy": "scripts/generate_jsconfig.js",
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonJS",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "builders/*": [
+        "./server/builders/*"
+      ],
+      "client/*": [
+        "./client/*"
+      ],
+      "controllers/*": [
+        "./server/controllers/*"
+      ],
+      "data/*": [
+        "./server/data/*"
+      ],
+      "db/*": [
+        "./server/db/*"
+      ],
+      "i18nAssets/*": [
+        "./inventaire-i18n/assets/*"
+      ],
+      "i18nDist/*": [
+        "./inventaire-i18n/dist/server/*"
+      ],
+      "i18nSrc/*": [
+        "./inventaire-i18n/original/*"
+      ],
+      "lib/*": [
+        "./server/lib/*"
+      ],
+      "models/*": [
+        "./server/models/*"
+      ],
+      "root/*": [
+        "*"
+      ],
+      "scripts/*": [
+        "./scripts/*"
+      ],
+      "server/*": [
+        "./server/*"
+      ],
+      "tests/*": [
+        "./tests/*"
+      ]
+    }
+  },
+  "include": [
+    "config/**/*",
+    "server/**/*",
+    "scripts/**/*",
+    "tests/**/*"
+  ]
+}

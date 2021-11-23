@@ -1,0 +1,42 @@
+version: '3'
+services:
+  couchdb:
+    image: couchdb:3.1.1
+    ports:
+      - "5984:5984"
+    environment:
+      COUCHDB_USER: "admin"
+      COUCHDB_PASSWORD: "couchdb"
+    volumes:
+      - 'couchdb:/opt/couchdb/data'
+    network_mode: host
+    tty: true
+  inventaire:
+    build:
+      context: ./.
+      dockerfile: Dockerfile.inventaire
+    ports:
+      - "3006:3006"
+      - "9485:9485"
+    volumes:
+      - ./inventaire:/opt/inventaire
+    working_dir: /opt/inventaire
+    network_mode: host
+    tty: true
+  elasticsearch:
+    image: elasticsearch:7.14.0
+    environment:
+      - 'http.host=0.0.0.0'
+      - 'transport.host=127.0.0.1'
+      # See https://www.elastic.co/guide/en/elasticsearch/reference/7.14/docker.html
+      - 'discovery.type=single-node'
+    ports :
+      - '127.0.0.1:9200:9200'
+    volumes:
+      - 'elasticsearch:/usr/share/elasticsearch/data'
+    network_mode: host
+    logging:
+      driver: none
+volumes:
+  couchdb:
+  elasticsearch:

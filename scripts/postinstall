@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -eu
+
+# If the client folder already exist, assume that it's a re-install
+# and that all the following isn't needed
+[ -e client ] && exit 0
+
+# Needs to run before generate_lang_json so that client/public/i18n/dist is already populated
+npm run install-client
+npm run install-i18n
+
+mkdir -p logs run db/leveldb
+
+touch ./logs/server.log ./logs/error.log
+# Expected by scripts/actions/backup_databases.js
+mkdir -p ./db/couchdb/backups
+# Expected by scripts/test_api
+mkdir -p run
+# Create folders for when mediaStorage is in local mode (which is the default)
+mkdir -p ./storage/users ./storage/groups ./storage/entities
+touch run/3006 run/3009
+
+[ -z ./config/local.js ] && {
+  # Create a local config file
+  emptyConfigFile="
+  # Override settings from ./default.js in this file
+  module.exports = {
+    db: {
+      username: 'yourcouchdbusername',
+      password: 'yourcouchdbpassword',
+      port: 5984,
+    }
+  }
+  "
+  echo "$emptyConfigFile" >> ./config/local.js
+  chmod 600 ./config/local.js
+} || echo './config/local.js file already exist: skipping creation'
+
+npm run update-jsconfig
